@@ -11,6 +11,7 @@ export default function PinnedCanvas() {
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     let carCtx: gsap.Context | null = null;
     let sceneTrigger: ScrollTrigger | null = null;
@@ -240,8 +241,8 @@ export default function PinnedCanvas() {
         }} />
 
       {/* ── M-stripe SVG + hidden motion path ─────────────────── */}
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1440 900"
-        preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className="absolute inset-0 h-full w-full opacity-80 sm:opacity-100" viewBox="0 0 1440 900"
+        preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="stripeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#81C4FF" />
@@ -276,7 +277,7 @@ export default function PinnedCanvas() {
       {/* ── Car ───────────────────────────────────────────────── */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img ref={carRef} src="/Car.svg" alt="" width={560} height={1155}
-        className="car-element absolute h-auto w-[17.5rem] sm:w-[22rem] md:w-[28rem] lg:w-[35rem]"
+        className="car-element absolute h-auto w-[13.25rem] sm:w-[18rem] md:w-[28rem] lg:w-[35rem]"
         decoding="async"
         fetchPriority="high"
         style={{

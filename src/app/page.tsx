@@ -22,7 +22,7 @@ export default function Home() {
       */}
       <PinnedCanvas />
 
-      <div id="scroll-track" className="relative h-[500vh]">
+      <div id="scroll-track" className="relative h-[500svh]">
         {/*
           Layer 1 — Sticky presentation stack
           The showcase panels stay pinned while the footer lives below the stack,
@@ -31,7 +31,7 @@ export default function Home() {
         <div
           id="section-stack"
           data-ready="false"
-          className="sticky top-0 z-10 h-screen w-full pointer-events-none *:absolute *:inset-0 *:pointer-events-auto"
+          className="sticky top-0 z-10 h-[100svh] w-full overflow-hidden pointer-events-none *:absolute *:inset-0 *:pointer-events-auto"
         >
           <HeroSection />
           <ServiceSection />

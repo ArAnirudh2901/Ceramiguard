@@ -87,7 +87,7 @@ export default function TestimonialsSection() {
   const t = TESTIMONIALS[active];
 
   return (
-    <section id="testimonials" data-reveal-section className="relative flex h-screen flex-col items-center justify-center overflow-hidden px-6 pt-[11vh] pb-6 sm:px-8 md:px-12 md:pt-[13vh] md:pb-8 lg:px-16" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
+    <section id="testimonials" data-reveal-section className="relative flex h-[100svh] flex-col items-center justify-center overflow-hidden px-4 pb-5 pt-[calc(env(safe-area-inset-top)+6.45rem)] sm:px-6 sm:pb-6 sm:pt-[calc(env(safe-area-inset-top)+6.85rem)] md:px-8 md:pb-8 md:pt-[7.5rem] lg:px-16 lg:pt-[8.5rem]" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
       {/* Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -101,18 +101,18 @@ export default function TestimonialsSection() {
 
       <div className="section-content mx-auto w-full max-w-5xl">
         {/* Header */}
-        <div className="mb-6 text-center md:mb-8 lg:mb-10">
-          <h2 className="mb-4 text-[2.2rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
+        <div className="mb-5 text-left sm:text-center md:mb-8 lg:mb-10">
+          <h2 className="mb-3 text-[1.95rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             What Clients Notice After Pickup
           </h2>
-          <p className="mx-auto max-w-2xl text-sm font-light leading-relaxed text-zinc-300 sm:text-base md:text-lg">
+          <p className="max-w-2xl text-[0.92rem] font-light leading-relaxed text-zinc-300 sm:mx-auto sm:text-base md:text-lg">
             Notes from recent correction, coating, and protection jobs,
             focused on finish quality, clarity, and how the car looked once it
             left the studio.
           </p>
         </div>
 
-        <div className="relative h-[360px] sm:h-[340px] md:h-[300px]">
+        <div className="relative h-[330px] sm:h-[340px] md:h-[300px]">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={page}
@@ -124,7 +124,7 @@ export default function TestimonialsSection() {
             >
               <div className="w-full max-w-xl">
                 <div
-                  className="glass-panel rounded-2xl p-6 shadow-[0_18px_48px_-24px_rgba(129,196,255,0.25)] sm:p-8"
+                  className="glass-panel rounded-2xl p-5 shadow-[0_18px_48px_-24px_rgba(129,196,255,0.25)] sm:p-8"
                 >
                   {/* Quote mark */}
                   <div
@@ -134,7 +134,7 @@ export default function TestimonialsSection() {
                     &ldquo;
                   </div>
 
-                  <p className="text-zinc-300 text-base leading-relaxed font-light mb-7 italic text-balance">
+                  <p className="mb-6 text-[0.96rem] font-light leading-relaxed text-zinc-300 italic text-balance sm:mb-7 sm:text-base">
                     &ldquo;{t.quote}&rdquo;
                   </p>
 
@@ -167,7 +167,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Navigation */}
-        <div className="mt-8 flex items-center justify-center gap-4 sm:mt-10 sm:gap-6">
+        <div className="mt-6 flex items-center justify-center gap-4 sm:mt-10 sm:gap-6">
           <button
             onClick={() => paginate(-1)}
             aria-label="Previous testimonial"

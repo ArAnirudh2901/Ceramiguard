@@ -5,7 +5,7 @@
   The car and stripe are on PinnedCanvas (position:fixed, z:0).
   This section is transparent so the canvas shows through fully.
 
-  Height: 100vh (exactly one viewport) — fills the first screen.
+  Height: 100svh (stable mobile viewport) — fills the first screen.
 
   NOTE: All entrance animations removed to prevent Framer Motion
   from overriding GSAP's autoAlpha crossfader on this section.
@@ -21,7 +21,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative h-screen flex flex-col overflow-hidden"
+      className="relative flex h-[100svh] flex-col overflow-hidden"
       /* No background — PinnedCanvas shows through */
     >
       {/* Dark scrim behind hero text so it stays legible over the stripe */}
@@ -36,7 +36,7 @@ export default function HeroSection() {
 
       {/* Hero copy — vertically centred in remaining space after navbar */}
       <div
-        className="pointer-events-none z-10 flex flex-1 flex-col justify-center px-6 pt-24 pb-16 sm:px-8 md:max-w-[56rem] md:pl-16 md:pr-8"
+        className="pointer-events-none z-10 flex flex-1 flex-col justify-center px-4 pb-12 pt-[calc(env(safe-area-inset-top)+6.5rem)] sm:px-6 sm:pb-14 sm:pt-[calc(env(safe-area-inset-top)+6.9rem)] md:max-w-[56rem] md:pl-12 md:pr-8 md:pt-[7.5rem] lg:pl-16"
       >
         <p
           className="text-[0.66rem] font-bold uppercase tracking-[0.34em] text-[#81C4FF] mb-5"
@@ -45,7 +45,7 @@ export default function HeroSection() {
         </p>
 
         <h1
-          className="mb-5 text-[2.9rem] font-black leading-[0.98] tracking-tight text-white sm:text-5xl md:mb-6 md:text-[4.6rem] lg:text-[5.2rem]"
+          className="mb-5 text-[2.45rem] font-black leading-[0.98] tracking-tight text-white sm:text-5xl md:mb-6 md:text-[4.6rem] lg:text-[5.2rem]"
         >
           Flawless{" "}
           <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#81C4FF] via-[#16588E] to-[#E7222E]">
@@ -56,7 +56,7 @@ export default function HeroSection() {
         </h1>
 
         <p
-          className="mb-8 max-w-[34rem] text-[0.96rem] leading-relaxed text-zinc-200 sm:text-base md:mb-10 md:max-w-[38rem] md:text-lg font-light"
+          className="mb-7 max-w-[34rem] text-[0.92rem] leading-relaxed text-zinc-200 sm:text-base md:mb-10 md:max-w-[38rem] md:text-lg font-light"
         >
           Where precision engineering meets artisan craftsmanship.
           Nano-ceramic coatings and multi-stage paint correction for
@@ -78,7 +78,7 @@ export default function HeroSection() {
 
         {/* Stats */}
         <div
-          className="pointer-events-auto mt-8 grid max-w-[26rem] grid-cols-3 gap-4 sm:mt-10 sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:gap-8 md:gap-10"
+          className="pointer-events-auto mt-7 grid max-w-[26rem] grid-cols-3 gap-3 sm:mt-10 sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:gap-8 md:gap-10"
         >
           {[
             { value: "500+", label: "Cars Detailed" },

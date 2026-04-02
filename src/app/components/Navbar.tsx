@@ -57,9 +57,9 @@ export default function Navbar() {
       variants={navContainer}
       initial="hidden"
       animate="show"
-      className="fixed inset-x-0 top-0 z-50 px-6 pt-5 pb-4 md:px-16 md:pt-6 md:pb-5 bg-transparent transition-all duration-300 pointer-events-auto"
+      className="fixed inset-x-0 top-0 z-50 bg-transparent px-4 pb-2 pt-[calc(env(safe-area-inset-top)+0.75rem)] transition-all duration-300 pointer-events-auto sm:px-6 sm:pb-3 sm:pt-[calc(env(safe-area-inset-top)+0.85rem)] md:px-10 md:pb-4 md:pt-6 lg:px-16 lg:pb-5"
     >
-      <div className="flex items-center justify-between gap-6">
+      <div className="flex items-center justify-between gap-4 sm:gap-5 md:gap-6">
         <motion.button
           type="button"
           variants={navItem}
@@ -72,7 +72,7 @@ export default function Navbar() {
             width={1746}
             height={463}
             priority
-            className="h-8 w-auto md:h-9"
+            className="h-6 w-auto sm:h-7 md:h-9"
           />
         </motion.button>
 
@@ -105,7 +105,7 @@ export default function Navbar() {
 
       </div>
 
-      <div className="mt-4 flex gap-2 overflow-x-auto pb-1 md:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mt-2 flex gap-1.5 overflow-x-auto px-0.5 pb-1 md:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {STACK_SECTIONS.map((link) => {
           const isActive = activeTarget === link.id;
 
@@ -114,7 +114,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => scrollToTarget(link.id)}
-                className={`rounded-full border px-3.5 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] transition-colors ${
+                className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-1.5 text-[0.56rem] font-semibold uppercase tracking-[0.14em] transition-colors sm:px-3.5 sm:py-2 sm:text-[0.6rem] ${
                   isActive
                     ? "border-white/20 bg-white/10 text-white"
                     : "border-white/10 bg-black/20 text-zinc-400"

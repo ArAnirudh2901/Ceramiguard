@@ -11,7 +11,7 @@ const GALLERY = [
     alt: "BMW M3 Competition in detailing studio",
     label: "Studio Reveal",
     sub: "BMW M3 · Full Detail",
-    span: "col-span-2 row-span-2",   // large hero image
+    span: "col-span-2 row-span-1 md:col-span-2 md:row-span-2",
   },
   {
     id: "g2",
@@ -35,7 +35,7 @@ const GALLERY = [
     alt: "PPF installation on BMW M5",
     label: "Full-Front PPF",
     sub: "BMW M5 · Protection",
-    span: "col-span-2 row-span-1",
+    span: "col-span-2 row-span-1 md:col-span-2 md:row-span-1",
   },
 ];
 
@@ -73,7 +73,7 @@ function GalleryCard({
 
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[linear-gradient(to_right,#81C4FF,#16588E,#E7222E)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-      <div className="absolute bottom-0 left-0 right-0 p-5">
+      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
         <div className="translate-y-1 opacity-90 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100">
           <p className="text-[0.6rem] uppercase tracking-[0.24em] text-[#81C4FF] font-semibold mb-1">
             {item.sub}
@@ -104,7 +104,7 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" data-reveal-section className="relative flex h-screen flex-col items-center justify-start overflow-hidden px-6 pt-[11vh] pb-5 sm:px-8 md:px-12 md:pt-[13vh] md:pb-7 lg:px-16 lg:pt-[14vh] lg:pb-8" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
+    <section id="gallery" data-reveal-section className="relative flex h-[100svh] flex-col items-center justify-start overflow-hidden px-4 pb-5 pt-[calc(env(safe-area-inset-top)+6.45rem)] sm:px-6 sm:pb-6 sm:pt-[calc(env(safe-area-inset-top)+6.85rem)] md:px-8 md:pb-7 md:pt-[7.5rem] lg:px-16 lg:pb-8 lg:pt-[8.5rem]" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -131,13 +131,13 @@ export default function GallerySection() {
           className="mb-4 grid gap-3 md:mb-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start shrink-0"
         >
           <div className="max-w-3xl">
-            <h2 className="text-[2.15rem] font-black tracking-tight text-white leading-[0.98] sm:text-3xl md:text-[3.1rem] md:leading-[1.02] lg:text-[3.55rem]">
+            <h2 className="text-[1.95rem] font-black tracking-tight text-white leading-[0.98] sm:text-3xl md:text-[3.1rem] md:leading-[1.02] lg:text-[3.55rem]">
               Results You Can Read <br className="hidden md:block" />
               <span className="inline-block pr-[0.08em] pb-[0.06em] italic text-transparent bg-clip-text bg-gradient-to-r from-[#81C4FF] to-[#E7222E]">
                 In Every Reflection
               </span>
             </h2>
-            <p className="mt-3 max-w-2xl text-[0.92rem] font-light leading-relaxed text-zinc-300 md:mt-4 md:text-base">
+            <p className="mt-3 max-w-2xl text-[0.88rem] font-light leading-relaxed text-zinc-300 md:mt-4 md:text-base">
               These recent deliveries show what the finish looks like after
               correction, protection, and final inspection: sharper reflections,
               calmer paint, and surfaces that hold their depth under hard studio light.
@@ -148,7 +148,7 @@ export default function GallerySection() {
           </div>
         </div>
 
-        <div className="mb-4 grid grid-cols-3 gap-2 md:mb-5 md:gap-3 shrink-0">
+        <div className="mb-4 grid grid-cols-3 gap-1.5 md:mb-5 md:gap-3 shrink-0">
           {RESULT_MARKERS.map((marker) => (
             <div
               key={marker.label}
@@ -164,7 +164,7 @@ export default function GallerySection() {
 
         {/* Asymmetric masonry grid */}
         <div className="mb-1 flex-1 min-h-0 w-full md:mb-2">
-          <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 md:grid-cols-4 md:gap-4">
+          <div className="grid h-full w-full grid-cols-2 grid-rows-3 gap-2.5 md:grid-cols-4 md:grid-rows-2 md:gap-4">
             {GALLERY.map((item) => (
               <GalleryCard key={item.id} item={item} onClick={() => openItem(item)} />
             ))}
@@ -180,7 +180,7 @@ export default function GallerySection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 flex items-center justify-center p-4 sm:p-8 pt-[6rem] sm:pt-[7rem]"
+            className="fixed inset-0 z-40 flex items-center justify-center p-4 pt-[calc(env(safe-area-inset-top)+5.75rem)] sm:p-8 sm:pt-[7rem]"
             style={{ backgroundColor: "rgba(8,10,15,0.9)" }}
             onClick={closeItem}
           >
