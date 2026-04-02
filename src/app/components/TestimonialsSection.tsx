@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const TESTIMONIALS = [
@@ -49,26 +49,38 @@ function StarRating({ count }: { count: number }) {
 }
 
 export default function TestimonialsSection() {
-  const [active, setActive] = useState(0);
-  const [[page, direction], setPage] = useState([0, 0]);
+  const [{ active, page, direction }, setCarouselState] = useState({
+    active: 0,
+    page: 0,
+    direction: 0,
+  });
 
   const paginate = (newDirection: number) => {
-    const newIndex = (active + newDirection + TESTIMONIALS.length) % TESTIMONIALS.length;
-    startTransition(() => {
-      setPage([page + newDirection, newDirection]);
-      setActive(newIndex);
+    setCarouselState((current) => {
+      const nextActive =
+        (current.active + newDirection + TESTIMONIALS.length) %
+        TESTIMONIALS.length;
+
+      return {
+        active: nextActive,
+        page: current.page + newDirection,
+        direction: newDirection,
+      };
     });
   };
 
   const goTo = (index: number) => {
-    if (index === active) {
-      return;
-    }
+    setCarouselState((current) => {
+      if (index === current.active) {
+        return current;
+      }
 
-    const dir = index > active ? 1 : -1;
-    startTransition(() => {
-      setPage([page + dir, dir]);
-      setActive(index);
+      const nextDirection = index > current.active ? 1 : -1;
+      return {
+        active: index,
+        page: current.page + nextDirection,
+        direction: nextDirection,
+      };
     });
   };
 
@@ -166,9 +178,9 @@ export default function TestimonialsSection() {
 
           {/* Dots */}
           <div className="flex gap-2">
-            {TESTIMONIALS.map((_, i) => (
+            {TESTIMONIALS.map((testimonial, i) => (
               <button
-                key={i}
+                key={testimonial.id}
                 onClick={() => goTo(i)}
                 aria-label={`Go to testimonial ${i + 1}`}
                 className="h-1.5 rounded-full transition-all duration-300"

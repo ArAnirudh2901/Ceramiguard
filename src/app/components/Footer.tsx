@@ -1,5 +1,5 @@
 import ScrollNavButton from "./ScrollNavButton";
-import { PRIMARY_NAV_ITEMS } from "../lib/sectionData";
+import { STACK_SECTIONS } from "../lib/sectionData";
 
 const SOCIALS = [
   {
@@ -72,7 +72,7 @@ export default function Footer() {
           <div>
             <p className="text-white font-semibold text-sm mb-5">Navigation</p>
             <ul className="flex flex-col gap-3">
-              {PRIMARY_NAV_ITEMS.map((link) => (
+              {STACK_SECTIONS.map((link) => (
                 <li key={link.id}>
                   <ScrollNavButton
                     target={link.id}

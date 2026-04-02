@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -65,7 +65,6 @@ function GalleryCard({
         sizes="(max-width: 768px) 100vw, 50vw"
         quality={72}
         className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-        priority={item.id === "g1"}
       />
 
       <div
@@ -97,9 +96,11 @@ export default function GallerySection() {
   const [selectedItem, setSelectedItem] = useState<(typeof GALLERY)[number] | null>(null);
 
   const openItem = (item: (typeof GALLERY)[number]) => {
-    startTransition(() => {
-      setSelectedItem(item);
-    });
+    setSelectedItem(item);
+  };
+
+  const closeItem = () => {
+    setSelectedItem(null);
   };
 
   return (
@@ -181,7 +182,7 @@ export default function GallerySection() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 flex items-center justify-center p-4 sm:p-8 pt-[6rem] sm:pt-[7rem]"
             style={{ backgroundColor: "rgba(8,10,15,0.9)" }}
-            onClick={() => setSelectedItem(null)}
+            onClick={closeItem}
           >
             <motion.div
               initial={{ scale: 0.96, opacity: 0, y: 12 }}
@@ -193,14 +194,14 @@ export default function GallerySection() {
             >
               <button 
                 className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/70 text-white hover:bg-black/85 transition-colors"
-                onClick={() => setSelectedItem(null)}
+                onClick={closeItem}
                 aria-label="Close"
               >
                 ✕
               </button>
               
               <div className="relative w-full md:w-1/2 h-[35vh] md:h-auto min-h-[250px] md:min-h-[400px]">
-                <Image src={selectedItem.src} alt={selectedItem.alt} fill quality={76} sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                <Image src={selectedItem.src} alt={selectedItem.alt} fill quality={75} sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#080a0f] via-[#080a0f]/40 to-transparent" />
               </div>
               
@@ -215,7 +216,7 @@ export default function GallerySection() {
                 <div className="flex flex-col sm:flex-row gap-4">
                    <button 
                      className="bg-white text-black px-6 py-3 rounded-full text-sm font-bold tracking-tight hover:bg-zinc-200 transition-colors text-center"
-                     onClick={() => setSelectedItem(null)}
+                     onClick={closeItem}
                    >
                      Close Gallery
                    </button>

@@ -8,7 +8,5 @@ export const STACK_SECTIONS = [
   { id: "testimonials", label: "Stories" },
 ] as const;
 
-export const PRIMARY_NAV_ITEMS = STACK_SECTIONS;
-
 export type StackSectionId = (typeof STACK_SECTIONS)[number]["id"];
 export type ScrollTargetId = StackSectionId | typeof FOOTER_ID;

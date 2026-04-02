@@ -8,7 +8,7 @@ import {
   getActiveTarget,
   scrollToTarget,
 } from "../lib/scrollSections";
-import { PRIMARY_NAV_ITEMS, type ScrollTargetId } from "../lib/sectionData";
+import { STACK_SECTIONS, type ScrollTargetId } from "../lib/sectionData";
 
 const navContainer: Variants = {
   hidden: {},
@@ -67,7 +67,7 @@ export default function Navbar() {
           className="flex items-center select-none"
         >
           <Image
-            src="/ceramiguard-logo.png"
+            src="/ceramiguard-logo-theme.png"
             alt="Ceramiguard logo"
             width={1746}
             height={463}
@@ -77,7 +77,7 @@ export default function Navbar() {
         </motion.button>
 
         <div className="hidden md:flex items-center gap-0">
-          {PRIMARY_NAV_ITEMS.map((link) => {
+          {STACK_SECTIONS.map((link) => {
             const isActive = activeTarget === link.id;
 
             return (
@@ -106,7 +106,7 @@ export default function Navbar() {
       </div>
 
       <div className="mt-4 flex gap-2 overflow-x-auto pb-1 md:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {PRIMARY_NAV_ITEMS.map((link) => {
+        {STACK_SECTIONS.map((link) => {
           const isActive = activeTarget === link.id;
 
           return (

@@ -73,20 +73,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 3px;
-}
-
-::-webkit-scrollbar-track {
-  background: #000;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--m-blue-dark), var(--m-red));
-  border-radius: 2px;
-}
-
 /* ─── Pinned Canvas ────────────────────────────────────────────
    position:fixed ensures the stripe+car backdrop is ALWAYS
    visible regardless of scroll position (fixes "background loss").
@@ -99,7 +85,6 @@ body {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  will-change: contents;
 }
 
 .ambient-orb,
@@ -134,7 +119,6 @@ body {
 .glass-panel {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  will-change: transform, opacity;
   transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 

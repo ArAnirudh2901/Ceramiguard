@@ -224,19 +224,19 @@ export default function PinnedCanvas() {
         style={{
           width: "54vw", height: "54vw", top: "2%", left: "-18%",
           background: "radial-gradient(circle, #16588E 0%, transparent 70%)",
-          animation: "orb-float-1 14s ease-in-out infinite", willChange: "transform"
+          animation: "orb-float-1 14s ease-in-out infinite",
         }} />
       <div className="ambient-orb absolute rounded-full blur-[72px] opacity-[0.12]"
         style={{
           width: "36vw", height: "36vw", bottom: "0%", right: "-8%",
           background: "radial-gradient(circle, #E7222E 0%, transparent 70%)",
-          animation: "orb-float-2 17s ease-in-out infinite", willChange: "transform"
+          animation: "orb-float-2 17s ease-in-out infinite",
         }} />
       <div className="ambient-orb absolute rounded-full blur-[110px] opacity-[0.1]"
         style={{
           width: "26vw", height: "26vw", top: "-4%", left: "44%",
           background: "radial-gradient(circle, #81C4FF 0%, transparent 70%)",
-          animation: "orb-float-3 11s ease-in-out infinite", willChange: "transform"
+          animation: "orb-float-3 11s ease-in-out infinite",
         }} />
 
       {/* ── M-stripe SVG + hidden motion path ─────────────────── */}

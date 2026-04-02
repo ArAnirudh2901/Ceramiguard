@@ -43,7 +43,7 @@ function getFooterTop() {
   return window.scrollY + footer.getBoundingClientRect().top;
 }
 
-export function getScrollTrackMetrics() {
+function getScrollTrackMetrics() {
   const track = document.getElementById("scroll-track");
   if (!track) {
     return null;
@@ -55,7 +55,7 @@ export function getScrollTrackMetrics() {
   return { start, span };
 }
 
-export function getSectionFloatIndex() {
+function getSectionFloatIndex() {
   const metrics = getScrollTrackMetrics();
   if (!metrics || metrics.span === 0) {
     return 0;
@@ -65,7 +65,7 @@ export function getSectionFloatIndex() {
   return progress * STACK_SECTIONS.length;
 }
 
-export function getSectionScrollTop(id: StackSectionId) {
+function getSectionScrollTop(id: StackSectionId) {
   const metrics = getScrollTrackMetrics();
   const index = STACK_SECTIONS.findIndex((section) => section.id === id);
 
@@ -77,7 +77,7 @@ export function getSectionScrollTop(id: StackSectionId) {
   return metrics.start + step * index;
 }
 
-export function getTargetScrollTop(target: ScrollTargetId) {
+function getTargetScrollTop(target: ScrollTargetId) {
   return target === FOOTER_ID ? getFooterTop() : getSectionScrollTop(target);
 }
 
