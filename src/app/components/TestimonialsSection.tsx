@@ -101,18 +101,18 @@ export default function TestimonialsSection() {
 
       <div className="section-content mx-auto w-full max-w-5xl">
         {/* Header */}
-        <div className="mb-5 text-left sm:text-center md:mb-8 lg:mb-10">
-          <h2 className="mb-3 text-[1.95rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
+        <div className="mb-4 text-left sm:text-center md:mb-8 lg:mb-10">
+          <h2 className="mb-2.5 text-[1.72rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             What Clients Notice After Pickup
           </h2>
-          <p className="max-w-2xl text-[0.92rem] font-light leading-relaxed text-zinc-300 sm:mx-auto sm:text-base md:text-lg">
+          <p className="max-w-2xl text-[0.82rem] font-light leading-[1.55] text-zinc-300 sm:mx-auto sm:text-base md:text-lg">
             Notes from recent correction, coating, and protection jobs,
             focused on finish quality, clarity, and how the car looked once it
             left the studio.
           </p>
         </div>
 
-        <div className="relative h-[330px] sm:h-[340px] md:h-[300px]">
+        <div className="relative h-[320px] sm:h-[340px] md:h-[300px]">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={page}
@@ -122,19 +122,19 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.24, ease: "easeOut" }}
               className="absolute inset-0 flex items-start justify-center"
             >
-              <div className="w-full max-w-xl">
+              <div className="w-full max-w-lg md:max-w-xl">
                 <div
-                  className="glass-panel rounded-2xl p-5 shadow-[0_18px_48px_-24px_rgba(129,196,255,0.25)] sm:p-8"
+                  className="glass-panel rounded-[1.2rem] p-4 shadow-[0_18px_48px_-24px_rgba(129,196,255,0.25)] sm:rounded-2xl sm:p-8"
                 >
                   {/* Quote mark */}
                   <div
-                    className="text-6xl font-black leading-none mb-2 select-none"
+                    className="mb-1.5 select-none text-5xl font-black leading-none sm:mb-2 sm:text-6xl"
                     style={{ color: t.accent, opacity: 0.25 }}
                   >
                     &ldquo;
                   </div>
 
-                  <p className="mb-6 text-[0.96rem] font-light leading-relaxed text-zinc-300 italic text-balance sm:mb-7 sm:text-base">
+                  <p className="mb-5 text-[0.86rem] font-light leading-[1.55] text-zinc-300 italic text-balance sm:mb-7 sm:text-base">
                     &ldquo;{t.quote}&rdquo;
                   </p>
 
@@ -142,14 +142,14 @@ export default function TestimonialsSection() {
                     <div className="flex items-center gap-3">
                       {/* Avatar */}
                       <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold sm:h-10 sm:w-10 sm:text-sm"
                         style={{ background: `${t.accent}22`, color: t.accent, border: `1px solid ${t.accent}44` }}
                       >
                         {t.initials}
                       </div>
                       <div>
                         <p className="text-white font-semibold text-sm">{t.name}</p>
-                        <p className="text-zinc-400 text-[0.68rem] font-light mt-0.5">{t.car}</p>
+                        <p className="mt-0.5 text-[0.62rem] font-light text-zinc-400 sm:text-[0.68rem]">{t.car}</p>
                       </div>
                     </div>
                     <StarRating count={t.stars} />

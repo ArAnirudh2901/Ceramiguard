@@ -53,11 +53,11 @@ const STEPS = [
 function StepCard({ step }: { step: (typeof STEPS)[number] }) {
   return (
     <div
-      className="relative flex min-w-0 flex-col"
+      className="relative flex h-full min-w-0 flex-col"
     >
       {/* Number badge */}
       <div
-        className="relative mb-2 text-[2.75rem] font-black leading-none tracking-tighter select-none sm:mb-4 sm:text-[4.4rem] lg:text-[5.5rem]"
+        className="relative mb-1 text-[1.9rem] font-black leading-none tracking-tighter select-none sm:mb-4 sm:text-[4.4rem] lg:text-[5.5rem]"
         style={{
           color: "rgba(255, 255, 255, 0.06)",
           WebkitTextStroke: `1.5px ${step.accent}`,
@@ -69,19 +69,19 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
       </div>
 
       {/* Glass card */}
-      <div className="glass-panel group flex-1 rounded-2xl p-4 transition-colors duration-300 hover:bg-white/[0.06] sm:p-5 lg:p-6">
+      <div className="glass-panel group flex flex-1 flex-col rounded-[1.1rem] p-2.5 transition-colors duration-300 hover:bg-white/[0.06] sm:rounded-2xl sm:p-5 lg:p-6">
         <div
-          className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 sm:mb-5 sm:h-11 sm:w-11"
+          className="mb-2.5 flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 sm:mb-5 sm:h-11 sm:w-11 sm:rounded-xl"
           style={{ background: `${step.accent}18`, color: step.accent }}
         >
           {step.icon}
         </div>
-        <h3 className="mb-2.5 text-[1.05rem] font-bold tracking-tight text-white sm:mb-3 sm:text-lg">{step.title}</h3>
-        <p className="text-[0.84rem] font-light leading-relaxed text-zinc-300 sm:text-sm">{step.desc}</p>
+        <h3 className="mb-1.5 text-[0.86rem] font-bold leading-[1.15] tracking-tight text-white sm:mb-3 sm:text-lg">{step.title}</h3>
+        <p className="text-[0.64rem] font-light leading-[1.38] text-zinc-300 sm:text-sm">{step.desc}</p>
 
         {/* Bottom accent */}
         <div
-          className="mt-5 h-px opacity-25"
+          className="mt-auto pt-3 h-px opacity-25 sm:mt-5 sm:pt-0"
           style={{ background: `linear-gradient(to right, ${step.accent}, transparent)` }}
         />
       </div>
@@ -91,7 +91,7 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
 
 export default function ProcessSection() {
   return (
-    <section id="process" data-reveal-section className="relative flex h-[100svh] flex-col items-center justify-center overflow-hidden px-4 pb-5 pt-[calc(env(safe-area-inset-top)+6.45rem)] sm:px-6 sm:pb-6 sm:pt-[calc(env(safe-area-inset-top)+6.85rem)] md:px-8 md:pb-8 md:pt-[7.5rem] lg:px-16 lg:pt-[8.5rem]" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
+    <section id="process" data-reveal-section className="relative flex h-[100svh] flex-col items-center justify-center overflow-x-hidden overflow-y-auto px-4 pb-5 pt-[calc(env(safe-area-inset-top)+6.45rem)] sm:px-6 sm:pb-6 sm:pt-[calc(env(safe-area-inset-top)+6.85rem)] md:overflow-hidden md:px-8 md:pb-8 md:pt-[7.5rem] lg:px-16 lg:pt-[8.5rem]" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -103,13 +103,13 @@ export default function ProcessSection() {
         <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, #16588E 0%, transparent 70%)" }} />
       </div>
 
-      <div className="section-content mx-auto flex h-full w-full max-w-6xl flex-col justify-start md:justify-center">
+      <div className="section-content mx-auto flex min-h-full w-full max-w-6xl flex-col justify-start md:h-full md:justify-center">
         {/* Header */}
-        <div className="mb-5 text-left sm:text-center md:mb-8 lg:mb-10">
-          <h2 className="mb-3 text-[1.95rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
+        <div className="mb-4 shrink-0 text-left sm:text-center md:mb-8 lg:mb-10">
+          <h2 className="mb-2.5 text-[1.72rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             Four Steps to Flawless
           </h2>
-          <p className="max-w-xl text-[0.92rem] font-light leading-relaxed text-zinc-300 sm:mx-auto sm:text-base md:text-lg">
+          <p className="max-w-xl text-[0.82rem] font-light leading-[1.55] text-zinc-300 sm:mx-auto sm:text-base md:text-lg">
             Every vehicle follows the same uncompromising sequence — no shortcuts,
             no skipped stages.
           </p>
@@ -132,9 +132,9 @@ export default function ProcessSection() {
         </div>
 
         {/* Step cards grid */}
-        <div className="-mx-1 mt-3 flex min-h-0 snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-2 pt-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 md:pb-0 md:pt-0 xl:mt-6 xl:grid-cols-4 xl:gap-5">
+        <div className="mt-2 grid shrink-0 grid-cols-2 gap-x-2.5 gap-y-3 pb-2 [grid-auto-rows:1fr] md:mx-0 md:gap-4 md:overflow-visible md:pb-0 md:pt-0 xl:mt-6 xl:grid-cols-4 xl:gap-5">
           {STEPS.map((step) => (
-            <div key={step.num} className="min-w-[82%] shrink-0 snap-start sm:min-w-[72%] md:min-w-0 md:shrink md:snap-none">
+            <div key={step.num} className="min-w-0">
               <StepCard step={step} />
             </div>
           ))}
