@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import ScrollNavButton from "./ScrollNavButton";
 import { STACK_SECTIONS } from "../lib/sectionData";
 
@@ -38,15 +40,17 @@ export default function Footer() {
       <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(to right, #81C4FF 0%, #16588E 45%, #E7222E 100%)" }} />
 
       <div className="max-w-6xl mx-auto px-8 md:px-16 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.35fr)_minmax(14rem,0.65fr)] gap-12 mb-14">
           {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-5">
-              {/* Logo mark */}
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #16588E, #81C4FF)" }}>
-                <span className="text-white font-black text-xs">CG</span>
-              </div>
-              <span className="text-white font-black text-xl tracking-tight">Ceramiguard</span>
+          <div>
+            <div className="mb-5">
+              <Image
+                src="/ceramiguard-logo-theme.png"
+                alt="Ceramiguard logo"
+                width={1746}
+                height={463}
+                className="h-10 w-auto md:h-11"
+              />
             </div>
             <p className="text-zinc-600 text-sm font-light leading-relaxed max-w-xs">
               BMW M-Series detailing specialists. Precision paint correction,
@@ -83,30 +87,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Contact snippet */}
-          <div>
-            <p className="text-white font-semibold text-sm mb-5">Studio</p>
-            <address className="not-italic">
-              <p className="text-zinc-600 text-sm font-light leading-relaxed">
-                12 Motorway Court<br />
-                Industrial Quarter<br />
-                Manchester, M17 1QX
-              </p>
-              <a
-                href="tel:+441615550192"
-                className="block mt-4 text-sm text-zinc-600 hover:text-white transition-colors duration-200 font-light"
-              >
-                +44 (0) 161 555 0192
-              </a>
-              <a
-                href="mailto:hello@ceramiguard.co.uk"
-                className="block mt-1 text-sm text-zinc-600 hover:text-white transition-colors duration-200 font-light"
-              >
-                hello@ceramiguard.co.uk
-              </a>
-            </address>
           </div>
         </div>
 
