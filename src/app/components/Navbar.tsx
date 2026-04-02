@@ -59,7 +59,7 @@ export default function Navbar() {
       animate="show"
       className="fixed inset-x-0 top-0 z-50 bg-transparent px-4 pb-2 pt-[calc(env(safe-area-inset-top)+0.75rem)] transition-all duration-300 pointer-events-auto sm:px-6 sm:pb-3 sm:pt-[calc(env(safe-area-inset-top)+0.85rem)] md:px-10 md:pb-4 md:pt-6 lg:px-16 lg:pb-5"
     >
-      <div className="flex items-center justify-between gap-4 sm:gap-5 md:gap-6">
+      <div className="flex items-center justify-between gap-4 sm:gap-5 md:hidden">
         <motion.button
           type="button"
           variants={navItem}
@@ -75,13 +75,32 @@ export default function Navbar() {
             className="h-6 w-auto sm:h-7 md:h-9"
           />
         </motion.button>
+      </div>
 
-        <div className="hidden md:flex items-center gap-0">
-          {STACK_SECTIONS.map((link) => {
-            const isActive = activeTarget === link.id;
+      <div className="hidden items-center gap-6 md:flex">
+        <motion.button
+          type="button"
+          variants={navItem}
+          onClick={() => scrollToTarget("hero")}
+          className="flex shrink-0 items-center select-none"
+        >
+          <Image
+            src="/ceramiguard-logo-theme.png"
+            alt="Ceramiguard logo"
+            width={1746}
+            height={463}
+            priority
+            className="h-9 w-auto"
+          />
+        </motion.button>
 
-            return (
-              <motion.div key={link.id} variants={navItem}>
+        <div className="flex flex-1 justify-center">
+          <div className="flex items-center gap-0">
+            {STACK_SECTIONS.map((link) => {
+              const isActive = activeTarget === link.id;
+
+              return (
+                <motion.div key={link.id} variants={navItem}>
                   <button
                     type="button"
                     onClick={() => scrollToTarget(link.id)}
@@ -97,12 +116,13 @@ export default function Navbar() {
                       }`}
                     />
                   </button>
-              </motion.div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
-
+        <div aria-hidden="true" className="w-[8.5rem] shrink-0" />
       </div>
 
       <div className="mt-2 flex gap-1.5 overflow-x-auto px-0.5 pb-1 md:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
