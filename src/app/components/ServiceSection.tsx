@@ -58,13 +58,15 @@ const SERVICES = [
 // ─── Individual card with staggered entrance ───────────────────
 function ServiceCard({
   svc,
+  className = "",
 }: {
   svc: (typeof SERVICES)[number];
+  className?: string;
 }) {
   return (
-    <div>
+    <div className={className}>
       <div
-        className="glass-panel rounded-[1.75rem] p-7"
+        className="glass-panel h-full rounded-[1.5rem] p-5 sm:p-6 xl:rounded-[1.75rem] xl:p-7"
       >
         {/* Icon + badge row */}
         <div className="flex items-center justify-between mb-5">
@@ -107,7 +109,7 @@ function ServiceCard({
 // ─── Main export ───────────────────────────────────────────────
 export default function ServiceSection() {
   return (
-    <section id="services" data-reveal-section className="relative h-screen flex flex-col items-center justify-center pt-24 pb-10 px-8 md:px-16 overflow-hidden" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
+    <section id="services" data-reveal-section className="relative flex h-screen flex-col items-center justify-center overflow-hidden px-6 pt-[11vh] pb-6 sm:px-8 md:px-12 md:pt-[13vh] md:pb-8 lg:px-16" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
       {/* Animated divider line that scales in on scroll */}
       <div
         className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent origin-center"
@@ -138,13 +140,13 @@ export default function ServiceSection() {
         <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, #E7222E 0%, transparent 70%)" }} />
       </div>
 
-      <div className="section-content relative z-10 max-w-6xl mx-auto w-full">
+      <div className="section-content relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col justify-center">
         {/* Section header */}
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-5">
+        <div className="mb-6 text-center md:mb-10 lg:mb-12">
+          <h2 className="mb-4 text-[2.2rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             Correction, Coating, and Film With Clear Outcomes
           </h2>
-          <p className="text-zinc-400 text-base md:text-lg font-light max-w-3xl mx-auto leading-relaxed">
+          <p className="mx-auto max-w-3xl text-sm font-light leading-relaxed text-zinc-400 sm:text-base md:text-lg">
             Every package is scoped around paint condition, storage, mileage,
             and how the car is actually driven, so the finish feels controlled,
             durable, and believable under any light.
@@ -152,9 +154,9 @@ export default function ServiceSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid auto-cols-[84%] grid-flow-col gap-4 overflow-x-auto pb-3 pr-6 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:auto-cols-auto md:grid-flow-row md:grid-cols-2 md:overflow-visible md:pb-0 md:pr-0 lg:grid-cols-3 lg:gap-5">
           {SERVICES.map((svc) => (
-            <ServiceCard key={svc.id} svc={svc} />
+            <ServiceCard key={svc.id} svc={svc} className="snap-center md:snap-none" />
           ))}
         </div>
       </div>

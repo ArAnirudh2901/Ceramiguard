@@ -276,7 +276,7 @@ export default function PinnedCanvas() {
       {/* ── Car ───────────────────────────────────────────────── */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img ref={carRef} src="/Car.svg" alt="" width={560} height={1155}
-        className="car-element absolute"
+        className="car-element absolute h-auto w-[17.5rem] sm:w-[22rem] md:w-[28rem] lg:w-[35rem]"
         decoding="async"
         fetchPriority="high"
         style={{

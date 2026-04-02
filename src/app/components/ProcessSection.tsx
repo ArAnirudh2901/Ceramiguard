@@ -57,7 +57,7 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
     >
       {/* Number badge */}
       <div
-        className="text-[5.5rem] font-black leading-none tracking-tighter mb-4 select-none relative"
+        className="relative mb-3 text-[3.4rem] font-black leading-none tracking-tighter select-none sm:mb-4 sm:text-[4.4rem] lg:text-[5.5rem]"
         style={{
           color: "rgba(255, 255, 255, 0.06)",
           WebkitTextStroke: `1.5px ${step.accent}`,
@@ -69,15 +69,15 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
       </div>
 
       {/* Glass card */}
-      <div className="glass-panel rounded-2xl p-6 flex-1 group hover:bg-white/[0.06] transition-colors duration-300">
+      <div className="glass-panel flex-1 rounded-2xl p-4 transition-colors duration-300 group hover:bg-white/[0.06] sm:p-5 lg:p-6">
         <div
-          className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 border border-white/10"
+          className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 sm:mb-5 sm:h-11 sm:w-11"
           style={{ background: `${step.accent}18`, color: step.accent }}
         >
           {step.icon}
         </div>
-        <h3 className="text-white font-bold text-lg tracking-tight mb-3">{step.title}</h3>
-        <p className="text-zinc-300 text-sm leading-relaxed font-light">{step.desc}</p>
+        <h3 className="mb-2.5 text-base font-bold tracking-tight text-white sm:mb-3 sm:text-lg">{step.title}</h3>
+        <p className="text-[0.82rem] font-light leading-relaxed text-zinc-300 sm:text-sm">{step.desc}</p>
 
         {/* Bottom accent */}
         <div
@@ -91,7 +91,7 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
 
 export default function ProcessSection() {
   return (
-    <section id="process" data-reveal-section className="relative h-screen flex flex-col items-center justify-center pt-24 pb-10 px-8 md:px-16 overflow-hidden" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
+    <section id="process" data-reveal-section className="relative flex h-screen flex-col items-center justify-center overflow-hidden px-6 pt-[11vh] pb-6 sm:px-8 md:px-12 md:pt-[13vh] md:pb-8 lg:px-16" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -103,20 +103,20 @@ export default function ProcessSection() {
         <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, #16588E 0%, transparent 70%)" }} />
       </div>
 
-      <div className="section-content max-w-6xl mx-auto w-full">
+      <div className="section-content mx-auto flex h-full w-full max-w-6xl flex-col justify-center">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-5">
+        <div className="mb-6 text-center md:mb-8 lg:mb-12">
+          <h2 className="mb-4 text-[2.2rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             Four Steps to Flawless
           </h2>
-          <p className="text-zinc-300 text-base md:text-lg font-light max-w-xl mx-auto leading-relaxed">
+          <p className="mx-auto max-w-xl text-sm font-light leading-relaxed text-zinc-300 sm:text-base md:text-lg">
             Every vehicle follows the same uncompromising sequence — no shortcuts,
             no skipped stages.
           </p>
         </div>
 
         {/* Animated connector line (desktop only) */}
-        <div className="hidden md:block relative mb-2 h-px mx-4">
+        <div className="relative mb-2 mx-4 hidden h-px xl:block">
           <div className="absolute inset-0 bg-white/[0.06]" />
           <div
             className="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-[#81C4FF] via-[#16588E] to-[#E7222E]"
@@ -132,9 +132,11 @@ export default function ProcessSection() {
         </div>
 
         {/* Step cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mt-6">
+        <div className="mt-4 grid auto-cols-[84%] grid-flow-col gap-4 overflow-x-auto pb-3 pr-6 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:auto-cols-auto md:grid-flow-row md:grid-cols-2 md:overflow-visible md:pb-0 md:pr-0 xl:mt-6 xl:grid-cols-4 xl:gap-5">
           {STEPS.map((step) => (
-            <StepCard key={step.num} step={step} />
+            <div key={step.num} className="snap-center md:snap-none">
+              <StepCard step={step} />
+            </div>
           ))}
         </div>
       </div>

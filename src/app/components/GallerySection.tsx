@@ -104,7 +104,7 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" data-reveal-section className="relative h-screen flex flex-col items-center justify-start px-8 pt-[12vh] pb-6 md:px-16 md:pt-[14vh] md:pb-8 overflow-hidden" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
+    <section id="gallery" data-reveal-section className="relative flex h-screen flex-col items-center justify-start overflow-hidden px-6 pt-[11vh] pb-5 sm:px-8 md:px-12 md:pt-[13vh] md:pb-7 lg:px-16 lg:pt-[14vh] lg:pb-8" style={{ backgroundColor: "rgba(10,10,10,0.15)" }}>
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -125,37 +125,37 @@ export default function GallerySection() {
         <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, #E7222E 0%, transparent 70%)" }} />
       </div>
 
-      <div className="section-content relative z-10 max-w-6xl mx-auto w-full h-full flex flex-col">
+      <div className="section-content relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col">
         {/* Header */}
         <div
-          className="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-start mb-5 shrink-0"
+          className="mb-4 grid gap-3 md:mb-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start shrink-0"
         >
           <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-[3.55rem] font-black tracking-tight text-white leading-[0.98] md:leading-[1.02]">
+            <h2 className="text-[2.15rem] font-black tracking-tight text-white leading-[0.98] sm:text-3xl md:text-[3.1rem] md:leading-[1.02] lg:text-[3.55rem]">
               Results You Can Read <br className="hidden md:block" />
               <span className="inline-block pr-[0.08em] pb-[0.06em] italic text-transparent bg-clip-text bg-gradient-to-r from-[#81C4FF] to-[#E7222E]">
                 In Every Reflection
               </span>
             </h2>
-            <p className="mt-4 max-w-2xl text-zinc-300 text-[0.95rem] md:text-base font-light leading-relaxed">
+            <p className="mt-3 max-w-2xl text-[0.92rem] font-light leading-relaxed text-zinc-300 md:mt-4 md:text-base">
               These recent deliveries show what the finish looks like after
               correction, protection, and final inspection: sharper reflections,
               calmer paint, and surfaces that hold their depth under hard studio light.
             </p>
           </div>
-          <div className="self-start md:justify-self-end rounded-full border border-white/10 bg-black/20 px-4 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-zinc-400 backdrop-blur-sm">
+          <div className="self-start rounded-full border border-white/10 bg-black/20 px-3 py-1.5 text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-zinc-400 backdrop-blur-sm md:justify-self-end md:px-4 md:py-2 md:text-[0.62rem] md:tracking-[0.18em]">
             Recent delivery archive
           </div>
         </div>
 
-        <div className="mb-5 grid grid-cols-1 sm:grid-cols-3 gap-3 shrink-0">
+        <div className="mb-4 grid grid-cols-3 gap-2 md:mb-5 md:gap-3 shrink-0">
           {RESULT_MARKERS.map((marker) => (
             <div
               key={marker.label}
-              className="glass-panel rounded-2xl px-4 py-3"
+              className="glass-panel rounded-2xl px-3 py-2.5 md:px-4 md:py-3"
             >
-              <p className="text-white text-base md:text-lg font-black tracking-tight">{marker.value}</p>
-              <p className="text-zinc-400 text-[0.62rem] md:text-[0.66rem] font-semibold uppercase tracking-[0.16em]">
+              <p className="text-sm font-black tracking-tight text-white md:text-lg">{marker.value}</p>
+              <p className="text-[0.5rem] font-semibold uppercase tracking-[0.1em] text-zinc-400 md:text-[0.66rem] md:tracking-[0.16em]">
                 {marker.label}
               </p>
             </div>
@@ -163,8 +163,8 @@ export default function GallerySection() {
         </div>
 
         {/* Asymmetric masonry grid */}
-        <div className="flex-1 min-h-0 w-full mb-2">
-          <div className="grid h-full w-full grid-cols-2 md:grid-cols-4 grid-rows-2 gap-3 md:gap-4">
+        <div className="mb-1 flex-1 min-h-0 w-full md:mb-2">
+          <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-2.5 md:grid-cols-4 md:gap-4">
             {GALLERY.map((item) => (
               <GalleryCard key={item.id} item={item} onClick={() => openItem(item)} />
             ))}
