@@ -1,8 +1,50 @@
 @import "tailwindcss";
 
+/* ─── Section content visibility ─────────────────────────────
+   Section crossfades are controlled at the section level in
+   PinnedCanvas. Keep the inner content visible by default so
+   each panel still renders even if no per-section reveal runs.
+─────────────────────────────────────────────────────────── */
+[data-reveal-section] .section-content {
+  opacity: 1;
+  transform: none;
+}
+
+/*
+  Keep the stacked full-screen panels hidden until the GSAP timeline
+  has synchronized them to the current scroll position. This prevents
+  a reload flash where every absolute-positioned section appears at once.
+*/
+#section-stack[data-ready="false"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#section-stack > * {
+  will-change: opacity;
+}
+
+/* ─── Hide native scrollbar ─────────────────────────────────
+   Lenis provides smooth momentum; the native bar is redundant
+   and breaks the full-screen presentation feel.
+─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+  --m-blue-light: #81C4FF;
+  --m-blue-dark: #16588E;
+  --m-red: #E7222E;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.12);
 }
 
 @theme inline {
@@ -12,15 +54,179 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+
+/*
+  DO NOT set scroll-behavior: smooth — Lenis handles smoothing
+  natively via its own RAF loop. Native smooth-scroll would conflict.
+*/
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--m-blue-dark), var(--m-red));
+  border-radius: 2px;
+}
+
+/* ─── Pinned Canvas ────────────────────────────────────────────
+   position:fixed ensures the stripe+car backdrop is ALWAYS
+   visible regardless of scroll position (fixes "background loss").
+   pointer-events:none prevents it from blocking clicks.
+   z-index:0 keeps it behind all scrollable content.
+────────────────────────────────────────────────────────────── */
+.pinned-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: contents;
+}
+
+.ambient-orb,
+.section-orb {
+  will-change: transform, opacity;
+}
+
+.deferred-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 640px;
+}
+
+/* ─── Hardware-accelerated car element ─────────────────────── */
+.car-element {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: opacity 0.18s ease;
+}
+
+.pinned-canvas[data-car-ready="false"] .car-element {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.pinned-canvas[data-car-ready="true"] .car-element {
+  opacity: 1;
+  visibility: visible;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  will-change: transform, opacity;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ─── Ambient orb floating ──────────────────────────────────── */
+@keyframes orb-float-1 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(28px, -22px) scale(1.07);
+  }
+
+  66% {
+    transform: translate(-18px, 14px) scale(0.94);
+  }
+}
+
+@keyframes orb-float-2 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  40% {
+    transform: translate(-32px, 18px) scale(1.1);
+  }
+
+  75% {
+    transform: translate(22px, -28px) scale(0.93);
+  }
+}
+
+@keyframes orb-float-3 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(18px, 22px) scale(1.06);
+  }
+}
+
+/* ─── Ultra Realistic Micro Interactions ────────────────────── */
+
+/* Deep subtle pop for buttons and interactive elements */
+@media (hover: hover) and (pointer: fine) {
+  button:not(nav button),
+  a:not(nav a) {
+    transition: transform 0.28s cubic-bezier(0.25, 1, 0.33, 1),
+      opacity 0.28s cubic-bezier(0.25, 1, 0.33, 1);
+  }
+
+  .glass-panel {
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .glass-panel:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow:
+      0 18px 36px -18px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+    background-color: rgba(255, 255, 255, 0.065);
+  }
+
+  button:not(nav button):active,
+  a:not(nav a):active {
+    transform: scale(0.98) !important;
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ambient-orb,
+  .section-orb,
+  .scroll-hint-line {
+    animation: none !important;
+  }
 }
