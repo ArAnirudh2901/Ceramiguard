@@ -76,18 +76,18 @@ function ServiceCard({
           >
             {svc.icon}
           </div>
-          <span className="max-w-[4.9rem] text-right text-[0.42rem] font-extrabold uppercase leading-tight tracking-[0.12em] text-zinc-400 sm:max-w-none sm:text-[0.65rem] sm:tracking-[0.28em]">
+          <span className="max-w-[5.5rem] text-right text-[0.6rem] font-black uppercase leading-tight tracking-[0.12em] text-zinc-200 sm:max-w-none sm:text-[0.75rem] sm:tracking-[0.28em]">
             {svc.label}
           </span>
         </div>
 
-        <h3 className="mb-1.5 text-[0.88rem] font-bold leading-[1.15] tracking-tight text-white sm:text-xl">{svc.title}</h3>
+        <h3 className="mb-1.5 text-[1.1rem] font-bold leading-[1.15] tracking-tight text-white sm:text-2xl">{svc.title}</h3>
 
-        <p className="text-[0.64rem] font-light leading-[1.4] text-zinc-300 sm:text-sm">{svc.desc}</p>
+        <p className="text-[0.85rem] font-normal leading-[1.5] text-zinc-100 sm:text-base">{svc.desc}</p>
 
         <ul className="mt-2.5 space-y-1 sm:mt-5">
           {svc.highlights.map((detail) => (
-            <li key={detail} className="flex items-start gap-1.5 text-[0.64rem] leading-[1.35] text-zinc-400 sm:text-sm">
+            <li key={detail} className="flex items-start gap-1.5 text-[0.8rem] leading-[1.4] text-zinc-200 sm:text-sm font-medium">
               <span
                 className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
                 style={{ backgroundColor: svc.accent }}
@@ -146,7 +146,7 @@ export default function ServiceSection() {
           <h2 className="mb-2.5 text-[1.72rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             Correction, Coating, and Film With Clear Outcomes
           </h2>
-          <p className="max-w-3xl text-[0.82rem] font-light leading-[1.55] text-zinc-400 sm:mx-auto sm:text-base md:text-lg">
+          <p className="max-w-3xl text-[1rem] leading-[1.6] text-zinc-100 font-normal sm:mx-auto sm:text-lg md:text-xl">
             Every package is scoped around paint condition, storage, mileage,
             and how the car is actually driven, so the finish feels controlled,
             durable, and believable under any light.

@@ -80,18 +80,18 @@ function GalleryCard({
 
       <div className="absolute bottom-0 left-0 right-0 p-3.5 md:p-5">
         <div className="opacity-100 md:translate-y-1 md:opacity-90 md:transition-all md:duration-300 md:ease-out md:group-hover:translate-y-0 md:group-hover:opacity-100">
-          <p className="mb-1 text-[0.54rem] font-semibold uppercase tracking-[0.2em] text-[#81C4FF] md:text-[0.6rem] md:tracking-[0.24em]">
+          <p className="mb-1 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#81C4FF] md:text-[0.75rem] md:tracking-[0.24em]">
             {item.sub}
           </p>
-          <h4 className="text-[0.98rem] font-bold tracking-tight text-white md:text-lg">
+          <h4 className="text-[1.1rem] font-bold tracking-tight text-white md:text-xl">
             {item.label}
           </h4>
         </div>
 
-        <div className="mt-2 flex items-center gap-1.5 text-xs md:translate-x-[-8px] md:opacity-0 md:transition-all md:duration-300 md:ease-out md:group-hover:translate-x-0 md:group-hover:opacity-100">
-          <span className="font-medium text-zinc-300 md:hidden">Tap to open</span>
-          <span className="hidden font-medium text-zinc-300 md:inline">View Detail</span>
-          <span className="text-xs text-[#E7222E]">→</span>
+        <div className="mt-2 flex items-center gap-1.5 text-sm md:translate-x-[-8px] md:opacity-0 md:transition-all md:duration-300 md:ease-out md:group-hover:translate-x-0 md:group-hover:opacity-100">
+          <span className="font-semibold text-zinc-200 md:hidden">Tap to open</span>
+          <span className="hidden font-semibold text-zinc-200 md:inline">View Detail</span>
+          <span className="text-sm font-bold text-[#E7222E]">→</span>
         </div>
       </div>
     </button>
@@ -141,14 +141,11 @@ export default function GallerySection() {
                 In Every Reflection
               </span>
             </h2>
-            <p className="mt-2.5 max-w-2xl text-[0.82rem] font-light leading-[1.55] text-zinc-300 md:mt-4 md:text-base">
+            <p className="mt-2.5 max-w-2xl text-[1rem] leading-[1.6] text-zinc-100 md:mt-4 md:text-lg">
               These recent deliveries show what the finish looks like after
               correction, protection, and final inspection: sharper reflections,
               calmer paint, and surfaces that hold their depth under hard studio light.
             </p>
-          </div>
-          <div className="self-start rounded-full border border-white/10 bg-black/20 px-2.5 py-1.5 text-[0.52rem] font-semibold uppercase tracking-[0.14em] text-zinc-400 backdrop-blur-sm md:justify-self-end md:px-4 md:py-2 md:text-[0.62rem] md:tracking-[0.18em]">
-            Recent delivery archive
           </div>
         </div>
 
@@ -158,8 +155,8 @@ export default function GallerySection() {
               key={marker.label}
               className="glass-panel rounded-[1.1rem] px-2.5 py-2 md:rounded-2xl md:px-4 md:py-3"
             >
-              <p className="text-[0.92rem] font-black tracking-tight text-white md:text-lg">{marker.value}</p>
-              <p className="text-[0.46rem] font-semibold uppercase tracking-[0.08em] text-zinc-400 md:text-[0.66rem] md:tracking-[0.16em]">
+              <p className="text-[1.1rem] font-black tracking-tight text-white md:text-xl">{marker.value}</p>
+              <p className="text-[0.6rem] font-bold uppercase tracking-[0.08em] text-zinc-200 md:text-[0.75rem] md:tracking-[0.16em]">
                 {marker.label}
               </p>
             </div>
@@ -208,37 +205,37 @@ export default function GallerySection() {
               className="relative flex max-h-full w-full max-w-5xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#080a0f] shadow-2xl md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
+              <button
                 className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/70 text-white hover:bg-black/85 transition-colors"
                 onClick={closeItem}
                 aria-label="Close"
               >
                 ✕
               </button>
-              
+
               <div className="relative w-full md:w-1/2 h-[35vh] md:h-auto min-h-[250px] md:min-h-[400px]">
                 <Image src={selectedItem.src} alt={selectedItem.alt} fill quality={75} sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#080a0f] via-[#080a0f]/40 to-transparent" />
               </div>
-              
+
               <div className="flex w-full flex-col justify-center overflow-y-auto p-5 sm:p-10 md:w-1/2">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#81C4FF]">
+                <p className="mb-2 text-sm font-bold uppercase tracking-[0.16em] text-[#81C4FF]">
                   {selectedItem.sub}
                 </p>
                 <h3 className="mb-3 text-[1.75rem] font-bold tracking-tight text-white md:mb-4 md:text-4xl">{selectedItem.label}</h3>
-                <p className="mb-6 text-[0.88rem] leading-relaxed text-zinc-400 md:mb-8 md:text-base">
+                <p className="mb-6 text-[1rem] leading-relaxed text-zinc-200 md:mb-8 md:text-lg font-normal">
                   Experience the ultimate {selectedItem.label.toLowerCase()} finish. Using specialized tools and the industry&apos;s most advanced ceramic technology, this vehicle was subjected to our rigorous detailing protocol, yielding an intense, wet-look gloss, formidable hydrophobics, and profound clarity that sets a new standard for protection.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-                   <button 
-                     className="rounded-full bg-white px-6 py-3 text-center text-sm font-bold tracking-tight text-black transition-colors hover:bg-zinc-200"
-                     onClick={closeItem}
-                   >
-                     Close Gallery
-                   </button>
-                   <button className="rounded-full border border-white/20 bg-transparent px-6 py-3 text-center text-sm font-bold tracking-tight text-white transition-colors hover:bg-white/5">
-                     Book Similar Service
-                   </button>
+                  <button
+                    className="rounded-full bg-white px-6 py-3 text-center text-sm font-bold tracking-tight text-black transition-colors hover:bg-zinc-200"
+                    onClick={closeItem}
+                  >
+                    Close Gallery
+                  </button>
+                  <button className="rounded-full border border-white/20 bg-transparent px-6 py-3 text-center text-sm font-bold tracking-tight text-white transition-colors hover:bg-white/5">
+                    Book Similar Service
+                  </button>
                 </div>
               </div>
             </motion.div>

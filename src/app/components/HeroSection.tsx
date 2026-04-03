@@ -22,7 +22,7 @@ export default function HeroSection() {
     <section
       id="hero"
       className="relative flex h-[100svh] flex-col overflow-hidden"
-      /* No background — PinnedCanvas shows through */
+    /* No background — PinnedCanvas shows through */
     >
       {/* Dark scrim behind hero text so it stays legible over the stripe */}
       <div
@@ -38,11 +38,6 @@ export default function HeroSection() {
       <div
         className="pointer-events-none z-10 flex flex-1 flex-col justify-center px-4 pb-12 pt-[calc(env(safe-area-inset-top)+6.5rem)] sm:px-6 sm:pb-14 sm:pt-[calc(env(safe-area-inset-top)+6.9rem)] md:max-w-[56rem] md:pl-12 md:pr-8 md:pt-[7.5rem] lg:pl-16"
       >
-        <p
-          className="text-[0.66rem] font-bold uppercase tracking-[0.34em] text-[#81C4FF] mb-5"
-        >
-          BMW M-Series Specialist
-        </p>
 
         <h1
           className="mb-5 text-[2.45rem] font-black leading-[0.98] tracking-tight text-white sm:text-5xl md:mb-6 md:text-[4.6rem] lg:text-[5.2rem]"
@@ -56,7 +51,7 @@ export default function HeroSection() {
         </h1>
 
         <p
-          className="mb-7 max-w-[34rem] text-[0.92rem] leading-relaxed text-zinc-200 sm:text-base md:mb-10 md:max-w-[38rem] md:text-lg font-light"
+          className="mb-7 max-w-[34rem] text-[1.1rem] leading-relaxed text-zinc-100 sm:text-lg md:mb-10 md:max-w-[38rem] md:text-xl font-normal"
         >
           Where precision engineering meets artisan craftsmanship.
           Nano-ceramic coatings and multi-stage paint correction for
@@ -69,7 +64,7 @@ export default function HeroSection() {
           {HERO_HIGHLIGHTS.map((item) => (
             <span
               key={item}
-              className="glass-panel rounded-full px-3.5 py-2 text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-zinc-300 sm:px-4 md:text-[0.62rem]"
+              className="glass-panel rounded-full px-3.5 py-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-zinc-100 sm:px-4 md:text-[0.75rem]"
             >
               {item}
             </span>
@@ -82,14 +77,14 @@ export default function HeroSection() {
         >
           {[
             { value: "500+", label: "Cars Detailed" },
-            { value: "9H",   label: "Ceramic Hardness" },
-            { value: "5yr",  label: "Coating Warranty" },
+            { value: "9H", label: "Ceramic Hardness" },
+            { value: "5yr", label: "Coating Warranty" },
           ].map((s) => (
             <div key={s.label} className="flex min-w-0 flex-col gap-0.5">
               <span className="text-[1.45rem] font-black text-white tracking-tight sm:text-2xl">
                 {s.value}
               </span>
-              <span className="text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-zinc-300 sm:text-[0.63rem] sm:tracking-[0.22em]">
+              <span className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-zinc-200 sm:text-[0.75rem] sm:tracking-[0.22em]">
                 {s.label}
               </span>
             </div>
@@ -101,7 +96,7 @@ export default function HeroSection() {
       <div
         className="pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex md:bottom-8"
       >
-        <span className="text-[0.58rem] uppercase tracking-[0.28em] text-zinc-600 font-semibold">
+        <span className="text-[0.65rem] uppercase tracking-[0.28em] text-zinc-300 font-bold">
           Scroll
         </span>
         <div

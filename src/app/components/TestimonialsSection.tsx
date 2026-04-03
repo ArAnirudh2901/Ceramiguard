@@ -105,7 +105,7 @@ export default function TestimonialsSection() {
           <h2 className="mb-2.5 text-[1.72rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             What Clients Notice After Pickup
           </h2>
-          <p className="max-w-2xl text-[0.82rem] font-light leading-[1.55] text-zinc-300 sm:mx-auto sm:text-base md:text-lg">
+          <p className="max-w-2xl text-[1rem] leading-[1.6] text-zinc-100 font-normal sm:mx-auto sm:text-lg md:text-xl">
             Notes from recent correction, coating, and protection jobs,
             focused on finish quality, clarity, and how the car looked once it
             left the studio.
@@ -134,7 +134,7 @@ export default function TestimonialsSection() {
                     &ldquo;
                   </div>
 
-                  <p className="mb-5 text-[0.86rem] font-light leading-[1.55] text-zinc-300 italic text-balance sm:mb-7 sm:text-base">
+                  <p className="mb-5 text-[1rem] leading-[1.6] text-zinc-100 italic text-balance font-normal sm:mb-7 sm:text-xl">
                     &ldquo;{t.quote}&rdquo;
                   </p>
 
@@ -148,8 +148,8 @@ export default function TestimonialsSection() {
                         {t.initials}
                       </div>
                       <div>
-                        <p className="text-white font-semibold text-sm">{t.name}</p>
-                        <p className="mt-0.5 text-[0.62rem] font-light text-zinc-400 sm:text-[0.68rem]">{t.car}</p>
+                        <p className="text-white font-bold text-base sm:text-lg">{t.name}</p>
+                        <p className="mt-0.5 text-[0.75rem] font-medium text-zinc-200 sm:text-[0.85rem]">{t.car}</p>
                       </div>
                     </div>
                     <StarRating count={t.stars} />

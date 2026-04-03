@@ -53,7 +53,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-zinc-600 text-sm font-light leading-relaxed max-w-xs">
-              BMW M-Series detailing specialists. Precision paint correction,
+              Premium car detailing specialists. Precision paint correction,
               9H ceramic coatings, and self-healing PPF — all under one roof.
             </p>
 

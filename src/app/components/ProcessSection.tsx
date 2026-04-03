@@ -59,7 +59,7 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
       <div
         className="relative mb-1 text-[1.9rem] font-black leading-none tracking-tighter select-none sm:mb-4 sm:text-[4.4rem] lg:text-[5.5rem]"
         style={{
-          color: "rgba(255, 255, 255, 0.06)",
+          color: "rgba(255, 255, 255, 0.12)",
           WebkitTextStroke: `1.5px ${step.accent}`,
           opacity: 0.95,
           textShadow: `0 0 24px ${step.accent}50`,
@@ -76,8 +76,8 @@ function StepCard({ step }: { step: (typeof STEPS)[number] }) {
         >
           {step.icon}
         </div>
-        <h3 className="mb-1.5 text-[0.86rem] font-bold leading-[1.15] tracking-tight text-white sm:mb-3 sm:text-lg">{step.title}</h3>
-        <p className="text-[0.64rem] font-light leading-[1.38] text-zinc-300 sm:text-sm">{step.desc}</p>
+        <h3 className="mb-1.5 text-[1.1rem] font-bold leading-[1.15] tracking-tight text-white sm:mb-3 sm:text-2xl">{step.title}</h3>
+        <p className="text-[0.85rem] font-normal leading-[1.5] text-zinc-100 sm:text-base">{step.desc}</p>
 
         {/* Bottom accent */}
         <div
@@ -109,7 +109,7 @@ export default function ProcessSection() {
           <h2 className="mb-2.5 text-[1.72rem] font-black tracking-tight text-white sm:text-4xl md:mb-5 md:text-[2.9rem] lg:text-5xl">
             Four Steps to Flawless
           </h2>
-          <p className="max-w-xl text-[0.82rem] font-light leading-[1.55] text-zinc-300 sm:mx-auto sm:text-base md:text-lg">
+          <p className="max-w-xl text-[1rem] leading-[1.6] text-zinc-100 font-normal sm:mx-auto sm:text-lg md:text-xl">
             Every vehicle follows the same uncompromising sequence — no shortcuts,
             no skipped stages.
           </p>

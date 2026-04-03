@@ -71,8 +71,7 @@ export default function Navbar() {
             alt="Ceramiguard logo"
             width={1746}
             height={463}
-            priority
-            className="h-6 w-auto sm:h-7 md:h-9"
+            className="h-8 w-auto sm:h-10 md:h-12"
           />
         </motion.button>
       </div>
@@ -89,8 +88,7 @@ export default function Navbar() {
             alt="Ceramiguard logo"
             width={1746}
             height={463}
-            priority
-            className="h-9 w-auto"
+            className="h-12 w-auto lg:h-14"
           />
         </motion.button>
 
@@ -105,7 +103,7 @@ export default function Navbar() {
                     type="button"
                     onClick={() => scrollToTarget(link.id)}
                     aria-current={isActive ? "page" : undefined}
-                    className={`group relative px-5 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.14em] transition-colors duration-200 ${
+                    className={`group relative px-5 py-3 text-[0.85rem] font-bold uppercase tracking-[0.14em] transition-colors duration-200 ${
                       isActive ? "text-white" : "text-zinc-400 hover:text-white"
                     }`}
                   >
@@ -134,7 +132,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => scrollToTarget(link.id)}
-                className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-1.5 text-[0.56rem] font-semibold uppercase tracking-[0.14em] transition-colors sm:px-3.5 sm:py-2 sm:text-[0.6rem] ${
+                className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.14em] transition-colors sm:px-3.5 sm:py-2 sm:text-[0.75rem] ${
                   isActive
                     ? "border-white/20 bg-white/10 text-white"
                     : "border-white/10 bg-black/20 text-zinc-400"
