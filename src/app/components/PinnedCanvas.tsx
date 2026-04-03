@@ -8,6 +8,8 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 export default function PinnedCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
   const carRef = useRef<HTMLImageElement>(null);
+  const desktopPathRef = useRef<SVGPathElement>(null);
+  const mobilePathRef = useRef<SVGPathElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
@@ -19,9 +21,14 @@ export default function PinnedCanvas() {
     const trackEl = document.querySelector<HTMLElement>("#scroll-track");
     const containerEl = containerRef.current;
     const carEl = carRef.current;
+    const getActivePath = () =>
+      window.matchMedia("(max-width: 767px)").matches
+        ? mobilePathRef.current
+        : desktopPathRef.current;
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
 
     if (!trackEl || !stackEl || !containerEl || !carEl) {
       stackEl?.setAttribute("data-ready", "true");
@@ -32,6 +39,7 @@ export default function PinnedCanvas() {
     let carTween: gsap.core.Tween | null = null;
     let carLoadedListener: (() => void) | null = null;
     let carInitFrame = 0;
+    let activeViewport = mobileQuery.matches ? "mobile" : "desktop";
 
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("#section-stack > *"),
@@ -125,11 +133,18 @@ export default function PinnedCanvas() {
         return;
       }
 
+      const activePath = getActivePath();
+
+      if (!activePath) {
+        return;
+      }
+
+      activeViewport = mobileQuery.matches ? "mobile" : "desktop";
       carCtx = gsap.context(() => {
         gsap.set(carEl, {
           motionPath: {
-            path: "#cg-path",
-            align: "#cg-path",
+            path: activePath,
+            align: activePath,
             alignOrigin: [0.5, 0.5],
             autoRotate: 180,
             start: 0,
@@ -141,8 +156,8 @@ export default function PinnedCanvas() {
 
         carTween = gsap.to(carEl, {
           motionPath: {
-            path: "#cg-path",
-            align: "#cg-path",
+            path: activePath,
+            align: activePath,
             alignOrigin: [0.5, 0.5],
             autoRotate: 180,
             start: 0,
@@ -158,6 +173,22 @@ export default function PinnedCanvas() {
 
       applySceneProgress(sceneTrigger?.progress ?? 0);
       containerEl.setAttribute("data-car-ready", "true");
+    };
+
+    const syncViewportPath = () => {
+      const nextViewport = mobileQuery.matches ? "mobile" : "desktop";
+
+      if (nextViewport === activeViewport || !carCtx) {
+        return;
+      }
+
+      activeViewport = nextViewport;
+      containerEl.setAttribute("data-car-ready", "false");
+      carCtx.revert();
+      carCtx = null;
+      carTween = null;
+      initializeCar();
+      ScrollTrigger.refresh();
     };
 
     if (sections.length > 0) {
@@ -200,10 +231,13 @@ export default function PinnedCanvas() {
       stackEl.setAttribute("data-ready", "true");
     });
 
+    mobileQuery.addEventListener("change", syncViewportPath);
+
     return () => {
       stackEl.setAttribute("data-ready", "false");
       containerEl.setAttribute("data-car-ready", "false");
       window.cancelAnimationFrame(carInitFrame);
+      mobileQuery.removeEventListener("change", syncViewportPath);
       if (carLoadedListener) {
         carEl.removeEventListener("load", carLoadedListener);
       }
@@ -240,38 +274,142 @@ export default function PinnedCanvas() {
           animation: "orb-float-3 11s ease-in-out infinite",
         }} />
 
-      {/* ── M-stripe SVG + hidden motion path ─────────────────── */}
-      <svg className="absolute inset-0 h-full w-full opacity-80 sm:opacity-100" viewBox="0 0 1440 900"
-        preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg">
+      {/* ── Mobile M-stripe SVG + hidden motion path ─────────── */}
+      <svg
+        className="absolute inset-0 h-full w-full opacity-80 md:hidden"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          <linearGradient id="stripeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <linearGradient id="stripeGradMobile" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#81C4FF" />
             <stop offset="45%" stopColor="#16588E" />
             <stop offset="100%" stopColor="#E7222E" />
           </linearGradient>
-          <filter id="stripeGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <filter id="stripeGlowMobile" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Corner-to-corner mobile stripe */}
+        <path
+          d="M -10 110 L 110 -10"
+          stroke="url(#stripeGradMobile)"
+          strokeWidth="118"
+          fill="none"
+          opacity="0.18"
+          filter="url(#stripeGlowMobile)"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d="M -18 108 L 98 -8"
+          stroke="#81C4FF"
+          strokeWidth="34"
+          fill="none"
+          strokeLinecap="butt"
+          opacity="0.92"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d="M -10 110 L 110 -10"
+          stroke="#16588E"
+          strokeWidth="34"
+          fill="none"
+          strokeLinecap="butt"
+          opacity="0.96"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d="M -2 118 L 118 -2"
+          stroke="#E7222E"
+          strokeWidth="34"
+          fill="none"
+          strokeLinecap="butt"
+          opacity="0.92"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          ref={mobilePathRef}
+          d="M 14 86 L 86 14"
+          fill="none"
+          stroke="transparent"
+          strokeWidth="1"
+        />
+      </svg>
+
+      {/* ── Desktop M-stripe SVG + hidden motion path ────────── */}
+      <svg
+        className="absolute inset-0 hidden h-full w-full opacity-100 md:block"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMaxYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="stripeGradDesktop" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#81C4FF" />
+            <stop offset="45%" stopColor="#16588E" />
+            <stop offset="100%" stopColor="#E7222E" />
+          </linearGradient>
+          <filter id="stripeGlowDesktop" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
           </filter>
         </defs>
 
         {/* Wide luminous halo — extended well beyond viewport */}
-        <path d="M -500 1168 L 1940 -138" stroke="url(#stripeGrad)" strokeWidth="220"
-          fill="none" opacity="0.18" filter="url(#stripeGlow)" />
+        <path
+          d="M -500 1168 L 1940 -138"
+          stroke="url(#stripeGradDesktop)"
+          strokeWidth="220"
+          fill="none"
+          opacity="0.18"
+          filter="url(#stripeGlowDesktop)"
+        />
 
         {/* Light Blue — extended beyond viewport in both directions */}
-        <path d="M -500 1088 L 1940 -218" stroke="#81C4FF"
-          strokeWidth="60" fill="none" strokeLinecap="butt" opacity="0.92" />
+        <path
+          d="M -500 1088 L 1940 -218"
+          stroke="#81C4FF"
+          strokeWidth="60"
+          fill="none"
+          strokeLinecap="butt"
+          opacity="0.92"
+        />
         {/* Dark Blue — center stripe, car follows this exactly */}
-        <path d="M -500 1168 L 1940 -138" stroke="#16588E"
-          strokeWidth="60" fill="none" strokeLinecap="butt" opacity="0.96" />
+        <path
+          d="M -500 1168 L 1940 -138"
+          stroke="#16588E"
+          strokeWidth="60"
+          fill="none"
+          strokeLinecap="butt"
+          opacity="0.96"
+        />
         {/* Red */}
-        <path d="M -500 1248 L 1940 -58" stroke="#E7222E"
-          strokeWidth="60" fill="none" strokeLinecap="butt" opacity="0.92" />
+        <path
+          d="M -500 1248 L 1940 -58"
+          stroke="#E7222E"
+          strokeWidth="60"
+          fill="none"
+          strokeLinecap="butt"
+          opacity="0.92"
+        />
 
         {/* Invisible car trajectory — straight line exactly on the dark blue stripe */}
-        <path id="cg-path" d="M 180 804 L 1340 184"
-          fill="none" stroke="transparent" strokeWidth="1" />
+        <path
+          ref={desktopPathRef}
+          d="M 180 804 L 1340 184"
+          fill="none"
+          stroke="transparent"
+          strokeWidth="1"
+        />
       </svg>
 
       {/* ── Car ───────────────────────────────────────────────── */}
